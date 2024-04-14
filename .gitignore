@@ -1,0 +1,13 @@
+# Dependency directories
+node_modules/
+.idea/
+
+#build directories
+bin/
+package-lock.json
+combined.log
+error.log
+.env
+public/
+back/
+firebase-adminSDK.json
