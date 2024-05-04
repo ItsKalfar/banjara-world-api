@@ -33,6 +33,7 @@
     "multer-s3": "^3.0.1",
     "mysql2": "^3.9.4",
     "nodemailer": "^6.9.13",
+    "openai": "^4.40.2",
     "pdf-creator-node": "^2.3.5",
     "random-js": "^2.1.0",
     "uuid": "^9.0.1",

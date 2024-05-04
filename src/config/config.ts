@@ -31,4 +31,7 @@ export const appConfig = {
     s3secreateKey: process.env.AWS_S3_SECREATEKEY || "",
     s3BaseURL: process.env.AWS_BASE_URL || "",
   },
+  OPENAI: {
+    apiKey: env.OPEN_AI_API_KEY || ""
+  }
 };
