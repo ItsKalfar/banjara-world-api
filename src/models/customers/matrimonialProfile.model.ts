@@ -19,6 +19,8 @@ interface MatrimonialProfileDocument extends Document {
     birthTime: string;
     religion: string;
     profilePics: string[];
+    likes: string[];
+    active: number;
     // Can add preferences
   }
 
@@ -40,7 +42,9 @@ interface MatrimonialProfileDocument extends Document {
     dateOfBirth: { type: Date, required: true },
     birthTime: { type: String, required: true },
     religion: { type: String, required: true },
-    profilePics: [{ type: String }]
+    profilePics: [{ type: String }],
+    likes: [{ type: Schema.ObjectId, ref: 'Likes' }],
+    active: { type: Number, default: 1 }
   });
 
 export const MatrimonialProfile = model<MatrimonialProfileDocument>('MatrimonialProfile', MatrimonialProfileSchema);
