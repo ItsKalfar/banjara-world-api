@@ -5,10 +5,20 @@ import moment from "moment";
 import formidable from "formidable";
 import { transporter } from "../utilities/SendEmail";
 import { uploadFilestreamToS3, FilestreamToS3 } from "../utilities/BucketUtilities";
+import { Customer } from "../models/customers/customers.model"
+
+
 
 const signUp = async (reqData: any) => {
     try{
-
+        const { fullname, mobile, password, profilePicture } = reqData;
+        
+        const existingCustomer = await Customer.findOne({mobile});
+        if(existingCustomer) { 
+            if(existingCustomer.verifyMobile){
+                throw new Error("Mobile number already exists") 
+            }
+        };
     }catch(err: any){
         throw err;
     }
@@ -23,6 +33,14 @@ const signIn = async (reqData: any) => {
 }
 
 const resetPassword = async (reqData: any) => {
+    try{
+
+    }catch(err: any){
+        throw err;
+    }
+}
+
+const forgotPassword = async (reqData: any) => {
     try{
 
     }catch(err: any){

@@ -11,6 +11,7 @@ interface CustomerDocument extends Document {
   role: string;
   profilePicture?: string;
   active: number;
+  verifyMobile: boolean;
   forgotPasswordToken: string;
   forgotPasswordExpiry: any;
   createdAt: any;
@@ -30,6 +31,10 @@ const CustomerSchema: Schema<CustomerDocument> = new Schema(
     password: {
       type: String,
       required: true,
+    },
+    verifyMobile: {
+      type: Boolean,
+      default: false
     },
     purchases: [{ type: Schema.ObjectId, ref: "Order" }],
     matrimonialProfile: {

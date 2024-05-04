@@ -31,6 +31,14 @@ const resetPassword = async (reqData: any) => {
     }
 }
 
+const forgotPassword = async (reqData: any) => {
+    try{
+
+    }catch(err: any){
+        throw err;
+    }
+}
+
 export default {
     signIn, signUp, resetPassword
 }
