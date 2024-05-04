@@ -1,4 +1,3 @@
-import { UsersModel } from "../models/SQL/users.model";
 import { generateHash, verifyPassword } from "../utilities/Hashing";
 import jwt from "jsonwebtoken";
 import { appConfig } from "../config/config";

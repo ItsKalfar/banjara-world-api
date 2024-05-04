@@ -11,7 +11,7 @@ export const appConfig = {
     //timezone: 'utc'
   },
   MONGODB: {
-    database_url: env.MONGODB_URL || "",
+    database_url: env.MONGODB_URL || "mongodb+srv://admin:admin@banjaraworld.poubjsu.mongodb.net/?retryWrites=true&w=majority",
   },
   SUPABASE: {
     supabaseUrl: env.SUPABASE_URL || "https://zujzzfrvetvjptgzwyrc.supabase.co",
