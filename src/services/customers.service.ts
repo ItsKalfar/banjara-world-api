@@ -1,3 +1,16 @@
+// sign in
+// sign up
+// send otp
+// resend otp
+// verify otp
+// forgot password
+// reset password
+// update customer details
+// get customer details
+// add address
+// deactivate account
+
+
 import { generateHash, verifyPassword } from "../utilities/Hashing";
 import jwt from "jsonwebtoken";
 import { appConfig } from "../config/config";
@@ -6,8 +19,6 @@ import formidable from "formidable";
 import { transporter } from "../utilities/SendEmail";
 import { uploadFilestreamToS3, FilestreamToS3 } from "../utilities/BucketUtilities";
 import { Customer } from "../models/customers/customers.model"
-
-
 
 const signUp = async (reqData: any) => {
     try{

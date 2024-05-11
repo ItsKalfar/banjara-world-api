@@ -6,6 +6,7 @@ interface CustomerDocument extends Document {
   fullname: string;
   mobile: string;
   password: string;
+  addresses: string[];
   purchases: string[];
   matrimonialProfile?: string;
   role: string;
@@ -36,6 +37,7 @@ const CustomerSchema: Schema<CustomerDocument> = new Schema(
       type: Boolean,
       default: false
     },
+    addresses: [{ type: String, required: true }],
     purchases: [{ type: Schema.ObjectId, ref: "Order" }],
     matrimonialProfile: {
       type: Schema.ObjectId,
