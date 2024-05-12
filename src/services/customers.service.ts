@@ -9,6 +9,7 @@
 // get customer details
 // add address
 // deactivate account
+// some change
 
 
 import { generateHash, verifyPassword } from "../utilities/Hashing";
