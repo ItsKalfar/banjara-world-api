@@ -146,5 +146,5 @@ export default {
   getSingleCategory,
   deleteCategory,
   getAllCustomerCategories,
-  getCategoryOptions
+  getCategoryOptions,
 };
