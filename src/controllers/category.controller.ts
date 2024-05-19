@@ -6,7 +6,7 @@ import CategoryService from "../services/category.service";
 
 const getUserCategory: IController = async (req: Request, res: Response) => {
   try {
-    const data: any = await CategoryService.getAllCategories(req.body);
+    const data: any = await CategoryService.getAllAdminCategories(req.body);
     if (data instanceof Error) {
       ApiError(res, httpStatusCodes.BAD_REQUEST);
     } else {
