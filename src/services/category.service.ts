@@ -5,7 +5,7 @@ import { isEmpty, isUndefined } from "lodash";
 const getAllAdminCategories = async (reqData: any) => {
   try {
     let SearchQuery = !isEmpty(reqData.search)
-      ? `Where uc.name like '%${reqData.search}%'`
+      ? `WHERE uc.name LIKE '%${reqData.search}%'`
       : ``;
     let countData = await new CategoryModel().getCategoryCount(SearchQuery);
     let pagination = !isUndefined(reqData.setpagination)

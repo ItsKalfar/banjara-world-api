@@ -1,10 +1,12 @@
 import { Router } from "express";
 import healthCheck from "./healthCheck.router";
-import categoryRoute from "./category.route";
+import adminRouter from "./admin.route";
+import categoryRouter from "./category.route";
 
 const router = Router();
 
 router.use("/healthCheck", healthCheck);
-router.use("/category", categoryRoute);
+router.use("/category", categoryRouter);
+router.use("/admin", adminRouter);
 
 export default router;
