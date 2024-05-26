@@ -41,7 +41,7 @@ export class CategoryModel extends BaseModel {
   ) {
     return this._executeQuery(
       `SELECT uc.id, uc.name, uc.icon, uc.status FROM Categories as uc WHERE uc.status = 1 ${searchData} ${orderBy} limit ? offset ?`,
-      []
+      [limit, offset]
     );
   }
 
@@ -53,10 +53,9 @@ export class CategoryModel extends BaseModel {
   }
 
   async getCategoryByName(categoryName: string) {
-    return await this._executeQuery(
-      `SELECT * FROM Categories WHERE name = "${categoryName} "`,
-      [categoryName]
-    );
+    return await this._executeQuery(`SELECT * FROM Categories WHERE name = ?`, [
+      categoryName,
+    ]);
   }
 
   async addCategory(categoryInfo: any) {
