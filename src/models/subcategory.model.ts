@@ -1,6 +1,6 @@
 import BaseModel from "../middlewares/baseModel.middleware";
 
-export class CategoryModel extends BaseModel {
+export class SubcategoryModel extends BaseModel {
   async getSubcategoryById(subcategoryId: string) {
     return this._executeQuery(`SELECT * FROM Subcategories where id = ?`, [
       subcategoryId,
@@ -14,7 +14,9 @@ export class CategoryModel extends BaseModel {
     offset: number
   ) {
     return this._executeQuery(
-      `SELECT usc.id, usc.category_id, usc.name, usc.status FROM Subcategories as usc ${searchData} ${orderBy} limit ? offset ?`,
+      `SELECT usc.id, usc.category_id, usc.name, usc.status, uc.name as category_name FROM Subcategories as usc 
+      JOIN Categories as uc ON usc.category_id = uc.id 
+      ${searchData} ${orderBy} limit ? offset ?`,
       [limit, offset]
     );
   }
@@ -75,5 +77,12 @@ export class CategoryModel extends BaseModel {
     return this._executeQuery(`SELECT * FROM Subcategories WHERE name = ?`, [
       subcategoryName,
     ]);
+  }
+
+  async getSubcategoryOptions(categoryId: string) {
+    return this._executeQuery(
+      `SELECT * FROM Subcategories WHERE category_id = ? AND status = 1`,
+      [categoryId]
+    );
   }
 }

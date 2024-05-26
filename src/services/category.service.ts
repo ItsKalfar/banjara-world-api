@@ -32,7 +32,7 @@ const addCategory = async (reqData: any) => {
     const checkStatus = await new CategoryModel().getCategoryByName(
       reqData.name.trim()
     );
-    if (checkStatus.length > 0) throw new Error(`Category Name already exist`);
+    if (checkStatus.length > 0) throw new Error(`Category name already exist`);
 
     let CategoryInfo: any = {
       name: reqData.name.trim(),
