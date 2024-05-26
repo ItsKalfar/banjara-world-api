@@ -6,6 +6,7 @@ import subcategoryRouter from "./subcategories.route";
 import contentRouter from "./content.route";
 import sellerRouter from "./seller.route";
 import customerRouter from "./customer.route";
+import matrimonialprofileRouter from "./matrimonialProfile.route";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/subcategory", subcategoryRouter);
 router.use("/content", contentRouter);
 router.use("/seller", sellerRouter);
 router.use("/customer", customerRouter);
+router.use("/matrimonialProfile", matrimonialprofileRouter);
 
 export default router;
