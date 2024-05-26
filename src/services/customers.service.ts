@@ -300,4 +300,11 @@ export default {
   resendOtp,
   resetPassword,
   forgotPassword,
+  updateCustomerDetails,
+  addAddress,
+  updateAddress,
+  deleteAddress,
+  deleteAccount,
+  getAllAddressesOfCustomer,
+  getCustomerDetails,
 };

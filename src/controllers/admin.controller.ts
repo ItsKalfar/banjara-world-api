@@ -88,6 +88,62 @@ const getSingleAdmin: IController = async (req: Request, res: Response) => {
   }
 };
 
+const getAllCustomers: IController = async (req: Request, res: Response) => {
+  try {
+    const data = await adminService.getAllCustomers(req.body);
+    if (data instanceof Error) {
+      ApiError(res, httpStatusCodes.BAD_REQUEST);
+    } else {
+      ApiResult(res, data, httpStatusCodes.CREATED);
+    }
+  } catch (err: any) {
+    ApiError(res, httpStatusCodes.BAD_REQUEST, err.message);
+    return;
+  }
+};
+
+const getSingleCustomer: IController = async (req: Request, res: Response) => {
+  try {
+    const data = await adminService.getSingleCustomer(req.body);
+    if (data instanceof Error) {
+      ApiError(res, httpStatusCodes.BAD_REQUEST);
+    } else {
+      ApiResult(res, data, httpStatusCodes.CREATED);
+    }
+  } catch (err: any) {
+    ApiError(res, httpStatusCodes.BAD_REQUEST, err.message);
+    return;
+  }
+};
+
+const getAllSellers: IController = async (req: Request, res: Response) => {
+  try {
+    const data = await adminService.getAllSellers(req.body);
+    if (data instanceof Error) {
+      ApiError(res, httpStatusCodes.BAD_REQUEST);
+    } else {
+      ApiResult(res, data, httpStatusCodes.CREATED);
+    }
+  } catch (err: any) {
+    ApiError(res, httpStatusCodes.BAD_REQUEST, err.message);
+    return;
+  }
+};
+
+const getSingleSeller: IController = async (req: Request, res: Response) => {
+  try {
+    const data = await adminService.getSingleSeller(req.body);
+    if (data instanceof Error) {
+      ApiError(res, httpStatusCodes.BAD_REQUEST);
+    } else {
+      ApiResult(res, data, httpStatusCodes.CREATED);
+    }
+  } catch (err: any) {
+    ApiError(res, httpStatusCodes.BAD_REQUEST, err.message);
+    return;
+  }
+};
+
 export default {
   getAllAdminsList,
   adminSignIn,
@@ -95,4 +151,8 @@ export default {
   deleteAdmin,
   updateAdmin,
   getSingleAdmin,
+  getAllCustomers,
+  getAllSellers,
+  getSingleCustomer,
+  getSingleSeller,
 };

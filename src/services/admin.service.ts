@@ -11,12 +11,14 @@ import {
   FilestreamToS3,
 } from "../utilities/BucketUtilities";
 import { AdminModel } from "../models/admin.model";
+import { CustomerModel } from "../models/customer.model";
+import { SellerModel } from "../models/seller.model";
 import { isEmpty, isUndefined } from "lodash";
 
 const getAllAdmins = async (reqData: any) => {
   try {
     let SearchQuery = !isEmpty(reqData.search)
-      ? `WHERE name LIKE '%${reqData.search}'`
+      ? `WHERE (name LIKE '%${reqData.search}' OR email LIKE '%${reqData.search}')`
       : ``;
     let countData = await new AdminModel().getAdminsCount(SearchQuery);
     let pagination = !isUndefined(reqData.setpagination)
@@ -34,14 +36,6 @@ const getAllAdmins = async (reqData: any) => {
       (reqData.pageIndex - 1) * reqData.pageSize
     );
     return { data: data, count: isEmpty(countData) ? 0 : countData.length };
-  } catch (err: any) {
-    throw err;
-  }
-};
-
-const signUp = async (reqData: any) => {
-  try {
-    const checkStatus = await new AdminModel();
   } catch (err: any) {
     throw err;
   }
@@ -165,9 +159,88 @@ const getSingleAdminDetails = async (reqData: any) => {
   }
 };
 
+const getAllCustomers = async (reqData: any) => {
+  try {
+    let SearchQuery = !isEmpty(reqData.search)
+      ? `WHERE (name LIKE '%${reqData.search}' OR email LIKE '%${reqData.search}' OR mobile_number LIKE '%${reqData.search}')`
+      : ``;
+    let countData = await new CustomerModel().getAllCustomersCount(SearchQuery);
+    let pagination = !isUndefined(reqData.setpagination)
+      ? reqData.setpagination
+      : false;
+    let OrderQuery =
+      !isEmpty(reqData.orderBy) && reqData.orderBy.key !== ""
+        ? `ORDER BY ${reqData.orderBy.key} ${reqData.orderBy.order}`
+        : `ORDER BY id ASC`;
+
+    const data = await new CustomerModel().getAllCustomers(
+      SearchQuery,
+      OrderQuery,
+      pagination ? countData.length : reqData.pageSize,
+      (reqData.pageIndex - 1) * reqData.pageSize
+    );
+
+    return { data };
+  } catch (err: any) {
+    throw err;
+  }
+};
+
+const getSingleCustomer = async (reqData: any) => {
+  try {
+    const data = await new CustomerModel().getCustomerById(reqData.customerId);
+
+    if (data.length === 0) throw new Error("Customer doesn't exists");
+
+    return { data };
+  } catch (err: any) {
+    throw err;
+  }
+};
+
+const getAllSellers = async (reqData: any) => {
+  try {
+    let SearchQuery = !isEmpty(reqData.search)
+      ? `WHERE (name LIKE '%${reqData.search}' OR email LIKE '%${reqData.search}' OR store_name LIKE '%${reqData.search}')`
+      : ``;
+    let countData = await new SellerModel().getAllAdminSellersCount(
+      SearchQuery
+    );
+    let pagination = !isUndefined(reqData.setpagination)
+      ? reqData.setpagination
+      : false;
+    let OrderQuery =
+      !isEmpty(reqData.orderBy) && reqData.orderBy.key !== ""
+        ? `ORDER BY ${reqData.orderBy.key} ${reqData.orderBy.order}`
+        : `ORDER BY id ASC`;
+
+    const data = await new SellerModel().getAllAdminSellers(
+      SearchQuery,
+      OrderQuery,
+      pagination ? countData.length : reqData.pageSize,
+      (reqData.pageIndex - 1) * reqData.pageSize
+    );
+
+    return { data };
+  } catch (err: any) {
+    throw err;
+  }
+};
+
+const getSingleSeller = async (reqData: any) => {
+  try {
+    const data = await new SellerModel().getSellerById(reqData.sellerId);
+
+    if (data.length === 0) throw new Error("Seller doesn't exists");
+
+    return { data };
+  } catch (err: any) {
+    throw err;
+  }
+};
+
 export default {
   signIn,
-  signUp,
   resetPassword,
   forgotPassword,
   getAllAdmins,
@@ -175,4 +248,8 @@ export default {
   updateAdmin,
   deleteAdmin,
   getSingleAdminDetails,
+  getAllCustomers,
+  getAllSellers,
+  getSingleCustomer,
+  getSingleSeller,
 };
