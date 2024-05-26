@@ -271,6 +271,22 @@ const deleteAddress = async (reqData: any) => {
 
 const deleteAccount = async (reqData: any) => {
   try {
+    const checkCustomerStatus = await new CustomerModel().getCustomerById(
+      reqData.customerId
+    );
+    if (checkCustomerStatus.length === 0)
+      throw new Error("Customer doesn't exists");
+
+    let CustomerInfo = {
+      status: 0,
+    };
+
+    await new CustomerModel().updateCustomerData(
+      CustomerInfo,
+      reqData.customerId
+    );
+
+    return { data: reqData };
   } catch (err: any) {
     throw err;
   }
