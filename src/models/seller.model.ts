@@ -1,6 +1,16 @@
 import BaseModel from "../middlewares/baseModel.middleware";
 
 export class SellerModel extends BaseModel {
+  async getSellerByEmail(email: string) {
+    return this._executeQuery(`SELECT * FROM Sellers WHERE email = ?`, [email]);
+  }
+
+  async getSellerByMobileNumber(mobile_number: string) {
+    return this._executeQuery(`SELECT * FROM Sellers WHERE mobile_number = ?`, [
+      mobile_number,
+    ]);
+  }
+
   async getSellerById(sellerId: string) {
     return this._executeQuery(`SELECT * FROM Sellers WHERE id = ?`, [sellerId]);
   }
